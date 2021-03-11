@@ -30,16 +30,23 @@
 {#              <span class="nav-link-text">Google</span>#}
 {#            </a>#}
 {#          </li>#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile.html">#}
+{#              <i class="ni ni-single-02 text-yellow"></i>#}
+{#              <span class="nav-link-text">Профиль</span>#}
+{#            </a>#}
+{#          </li>#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link {% if 'tables' in segment %} active {% endif %}" href="/tables.html">#}
+{#              <i class="ni ni-bullet-list-67 text-default"></i>#}
+{#              <span class="nav-link-text">Tables</span>#}
+{#            </a>#}
+{#          </li>#}
           <li class="nav-item">
-            <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile.html">
-              <i class="ni ni-single-02 text-yellow"></i>
-              <span class="nav-link-text">Профиль</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if 'tables' in segment %} active {% endif %}" href="/tables.html">
-              <i class="ni ni-bullet-list-67 text-default"></i>
-              <span class="nav-link-text">Tables</span>
+            <a class="nav-link {% if 'department' in segment %} active {% endif %}" href="{% url 'department' %}">
+              <i class="fas fa-building text-default"></i>
+
+              <span class="nav-link-text">Отделения</span>
             </a>
           </li>
           <li class="nav-item">
@@ -47,6 +54,41 @@
               <i class="ni ni-circle-08 text-default"></i>
 
               <span class="nav-link-text">Сотрудники</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'position' in segment %} active {% endif %}" href="{% url 'position' %}">
+              <i class="fas fa-user-md text-default"></i>
+
+              <span class="nav-link-text">Должность</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'client' in segment %} active {% endif %}" href="{% url 'client' %}">
+              <i class="fas fa-users text-default"></i>
+
+              <span class="nav-link-text">Клиенты</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'service' in segment %} active {% endif %}" href="{% url 'service' %}">
+              <i class="fab fa-servicestack text-default"></i>
+
+              <span class="nav-link-text">Услуги</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'discount' in segment %} active {% endif %}" href="{% url 'discount' %}">
+              <i class="fas fa-tags text-default"></i>
+
+              <span class="nav-link-text">Скидки</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'appoint' in segment %} active {% endif %}" href="{% url 'appoinments' %}">
+              <i class="fas fa-pencil-alt text-default"></i>
+
+              <span class="nav-link-text">Запись клиента</span>
             </a>
           </li>
 
