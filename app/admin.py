@@ -9,5 +9,5 @@ from django.contrib import admin
 from app.models import *
 
 admin.site.register(
-    [Department, Position, Discount, Employee, Services, Client, Appointment]
+    [Department, Position, Discount, Employee, Services, Client, Appointment, Operation]
 )

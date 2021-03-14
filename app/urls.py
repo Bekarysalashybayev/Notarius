@@ -5,6 +5,7 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    path('operations/', views.operations, name='operations'),
     path('/employee', views.employee, name='employee'),
     path('/department', views.department, name='department'),
     path('/position', views.position, name='position'),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('/client', views.client, name='client'),
     path('/service', views.service, name='service'),
     path('/appoinments', views.appoinments, name='appoinments'),
+    path('/operation/add', views.add_operation, name='add_operation'),
     path('/employee/add', views.add_employee, name='add-employee'),
     path('/department/add', views.add_department, name='add-department'),
     path('/position/add', views.add_position, name='add-position'),

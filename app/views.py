@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
+from hashlib import sha256
 from django.http import HttpResponse
 from django import template
 
@@ -91,6 +92,50 @@ def appoinments(request):
     context = {'list': list, 'client': clients, 'message': "", 'segment': 'appoint'}
     html_template = loader.get_template('appoinments.html')
     return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
+def operations(request):
+    list = Operation.objects.all().order_by("-pk")
+    context = {'list': list, 'segment': 'operations'}
+    html_template = loader.get_template('operations.html')
+    return HttpResponse(html_template.render(context, request))
+
+
+def add_operation(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        size = file.size
+        name = file.name
+        content_type = file.content_type
+        employee = request.POST.get('employee')
+        client = request.POST.get('client')
+        operations = Operation.objects.all().last()
+        file_hash = sha256(file.read()).hexdigest()
+        if not operations:
+            Operation.objects.create(
+                file_size=size, file_name=name, file_mime_type=content_type,
+                file_hash=file_hash, client_id=client, employees_id=employee,
+            )
+        else:
+            Operation.objects.create(
+                file_size=size, file_name=name, file_mime_type=content_type,
+                file_hash=file_hash, client_id=client, employees_id=employee, previous_hash=operations.file_hash
+            )
+        return  redirect('operations')
+    else:
+
+        clients = Client.objects.all()
+        employees = Employee.objects.all()
+        context = {
+            # "upload_form": upload,
+            "action": "Добавить",
+            'clients': clients,
+            'employees': employees,
+        }
+        return render(request, 'add-operation.html', context)
+
+
 
 
 def add_employee(request):

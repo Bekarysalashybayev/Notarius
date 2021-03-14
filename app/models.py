@@ -66,3 +66,13 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.client.fio
+
+
+class Operation(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    employees = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    file_name = models.CharField(max_length=255)
+    file_mime_type = models.CharField(max_length=100)
+    file_size = models.IntegerField()
+    file_hash = models.CharField(max_length=66)
+    previous_hash = models.CharField(max_length=255, default="")
