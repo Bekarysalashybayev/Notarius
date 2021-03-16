@@ -12,8 +12,11 @@ from app.forms import *
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {}
-    context['segment'] = 'index'
+    cb = Department.objects.all().count()
+    cc = Client.objects.all().count()
+    cs = Employee.objects.all().count()
+    cd = Discount.objects.all().count()
+    context = {'segment': 'index', 'cb': cb, 'cc': cc, "cs": cs, 'cd': cd}
 
     html_template = loader.get_template('index.html')
     return HttpResponse(html_template.render(context, request))
@@ -122,20 +125,18 @@ def add_operation(request):
                 file_size=size, file_name=name, file_mime_type=content_type,
                 file_hash=file_hash, client_id=client, employees_id=employee, previous_hash=operations.file_hash
             )
-        return  redirect('operations')
+        return redirect('operations')
     else:
 
         clients = Client.objects.all()
         employees = Employee.objects.all()
         context = {
             # "upload_form": upload,
-            "action": "Добавить",
+            "action": "Қосу",
             'clients': clients,
             'employees': employees,
         }
         return render(request, 'add-operation.html', context)
-
-
 
 
 def add_employee(request):
@@ -153,7 +154,8 @@ def add_employee(request):
         context = {
             "upload_form": upload,
             "list": list,
-            "action": "Добавить"
+            "action": "Қосу",
+            'segment': 'employees'
         }
         return render(request, 'add-employee.html', context)
 
@@ -171,7 +173,8 @@ def add_department(request):
     else:
         context = {
             "upload_form": upload,
-            "action": "Добавить"
+            "action": "Қосу",
+            'segment': 'department'
         }
         return render(request, 'add-department.html', context)
 
@@ -191,7 +194,8 @@ def add_position(request):
         context = {
             "upload_form": upload,
             "list": list,
-            "action": "Добавить"
+            "action": "Қосу",
+            'segment': 'position'
         }
         return render(request, 'add-position.html', context)
 
@@ -209,7 +213,8 @@ def add_discount(request):
     else:
         context = {
             "upload_form": upload,
-            "action": "Добавить"
+            "action": "Қосу",
+            'segment': 'discount'
         }
         return render(request, 'add-discount.html', context)
 
@@ -229,7 +234,8 @@ def add_client(request):
         context = {
             "upload_form": upload,
             "list": list,
-            "action": "Добавить"
+            "action": "Қосу",
+            'segment': 'client'
         }
         return render(request, 'add-client.html', context)
 
@@ -247,7 +253,8 @@ def add_service(request):
     else:
         context = {
             "upload_form": upload,
-            "action": "Добавить"
+            "action": "Қосу",
+            'segment': 'service'
         }
         return render(request, 'add-service.html', context)
 
@@ -268,7 +275,8 @@ def update_employee(request, emp_id: int):
         "ProductForm": news_form,
         "ProductModel": emp_sel,
         "list": list,
-        "action": "Обновить"
+        "action": "Жаңарту",
+        'segment': 'employees',
     }
     return render(request, 'add-employee.html', context)
 
@@ -287,7 +295,8 @@ def update_department(request, id: int):
     context = {
         "ProductForm": form,
         "ProductModel": sel,
-        "action": "Обновить"
+        "action": "Жаңарту",
+        'segment': 'department'
     }
     return render(request, 'add-department.html', context)
 
@@ -308,7 +317,8 @@ def update_position(request, id: int):
         "ProductForm": form,
         "ProductModel": sel,
         "list": list,
-        "action": "Обновить"
+        "action": "Жаңарту",
+        'segment': 'position'
     }
     return render(request, 'add-position.html', context)
 
@@ -327,7 +337,8 @@ def update_discount(request, id: int):
     context = {
         "ProductForm": form,
         "ProductModel": sel,
-        "action": "Обновить"
+        "action": "Жаңарту",
+        'segment': 'discount'
     }
     return render(request, 'add-discount.html', context)
 
@@ -348,7 +359,8 @@ def update_client(request, id: int):
         "ProductForm": form,
         "ProductModel": sel,
         "list": list,
-        "action": "Обновить"
+        "action": "Жаңарту",
+        'segment': 'client'
     }
     return render(request, 'add-client.html', context)
 
@@ -367,7 +379,8 @@ def update_service(request, id: int):
     context = {
         "ProductForm": form,
         "ProductModel": sel,
-        "action": "Обновить"
+        "action": "Жаңарту",
+        'segment': 'service'
     }
     return render(request, 'add-service.html', context)
 
