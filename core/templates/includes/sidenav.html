@@ -43,6 +43,13 @@
 {#            </a>#}
 {#          </li>#}
           <li class="nav-item">
+            <a class="nav-link {% if 'operations' in segment %} active {% endif %}" href="{% url 'operations' %}">
+              <i class="fas fa-building text-default"></i>
+
+              <span class="nav-link-text">Операция</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {% if 'department' in segment %} active {% endif %}" href="{% url 'department' %}">
               <i class="fas fa-building text-default"></i>
 
