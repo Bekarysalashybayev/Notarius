@@ -5,6 +5,8 @@ from django.template import loader
 from hashlib import sha256
 from django.http import HttpResponse
 from django import template
+from django.contrib import messages
+
 
 from app.models import *
 from app.forms import *
@@ -102,6 +104,20 @@ def operations(request):
     return HttpResponse(html_template.render(context, request))
 
 
+def proof(request):
+    if request.method == "POST":
+        file = request.FILES['file']
+        pk = request.POST.get('pk')
+        operation = Operation.objects.get(pk=pk)
+        file_hash = sha256(file.read()).hexdigest()
+        if operation.file_hash == file_hash:
+            messages.success(request, "Файл не изменен")
+        else:
+            messages.error(request, "Файл изменен, возмжно не тот файл")
+
+        return redirect('operations')
+
+
 def add_operation(request):
     if request.method == 'POST':
         file = request.FILES['file']
@@ -122,7 +138,7 @@ def add_operation(request):
                 file_size=size, file_name=name, file_mime_type=content_type,
                 file_hash=file_hash, client_id=client, employees_id=employee, previous_hash=operations.file_hash
             )
-        return  redirect('operations')
+        return redirect('operations')
     else:
 
         clients = Client.objects.all()

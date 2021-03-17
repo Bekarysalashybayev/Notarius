@@ -6,6 +6,7 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
     path('operations/', views.operations, name='operations'),
+    path('proof/', views.proof, name='proof'),
     path('/employee', views.employee, name='employee'),
     path('/department', views.department, name='department'),
     path('/position', views.position, name='position'),
