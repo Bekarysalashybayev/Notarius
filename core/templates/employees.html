@@ -13,12 +13,12 @@
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
               <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Сотрудники</li>
+                <li class="breadcrumb-item active" aria-current="page">Қызметкерлер</li>
               </ol>
             </nav>
           </div>
           <div class="col-lg-6 col-5 text-right">
-            <a href="{% url 'add-employee' %}" class="btn btn-lg btn-sm btn-danger">Добавить</a>
+            <a href="{% url 'add-employee' %}" class="btn btn-lg btn-sm btn-danger">Қосу</a>
           </div>
         </div>
       </div>
@@ -32,16 +32,16 @@
       <div class="col">
         <div class="card bg-default shadow">
           <div class="card-header bg-transparent border-0">
-            <h3 class="text-white mb-0">Список сотрудников</h3>
+            <h3 class="text-white mb-0">Қызметкерлер тізімі</h3>
           </div>
           <div class="table-responsive">
             <table class="table align-items-center table-dark table-flush">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col" class="sort" data-sort="name">ФИО</th>
-                  <th scope="col" class="sort" data-sort="budget">Должность</th>
-                  <th scope="col" class="sort" data-sort="status">Оклад</th>
-                  <th scope="col">Отделение</th>
+                  <th scope="col" class="sort" data-sort="name">Толық аты</th>
+                  <th scope="col" class="sort" data-sort="budget">Лауазымы</th>
+                  <th scope="col" class="sort" data-sort="status">Жалақы</th>
+                  <th scope="col">Бөлім</th>
                   <th scope="col" class="sort" data-sort="completion">Прогресс</th>
                   <th scope="col"></th>
                 </tr>
@@ -89,10 +89,10 @@
                         <a href="employee/delete/{{ l.id }}" class="dropdown-item confirm-delete"
                            data-toggle="modal" data-target="#confirmDeleteModal"
                            id='deleteButton{{ l.id }}'>
-                            Удалить
+                            Жою
                         </a>
 {#                        <a class="dropdown-item" href="#">Удалить</a>#}
-                        <a class="dropdown-item" href="employee/update/{{ l.id }}">Изменить</a>
+                        <a class="dropdown-item" href="employee/update/{{ l.id }}">Өңдеу</a>
                       </div>
                     </div>
                   </td>
@@ -103,23 +103,7 @@
           </div>
         </div>
       </div>
-        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" caller-id="" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body confirm-delete">
-                        Вы точно хотите удалить?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена
-                        </button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                id="confirmDeleteButtonModal">Удалить
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     {% include "includes/footer.html" %}
 

@@ -13,12 +13,12 @@
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
               <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Операция</li>
+                <li class="breadcrumb-item active" aria-current="page">Жұмыс</li>
               </ol>
             </nav>
           </div>
           <div class="col-lg-6 col-5 text-right">
-            <a href="{% url 'add_operation' %}" class="btn btn-lg btn-sm btn-danger">Добавить</a>
+            <a href="{% url 'add_operation' %}" class="btn btn-lg btn-sm btn-danger">Қосу</a>
           </div>
         </div>
       </div>
@@ -34,11 +34,8 @@
           <div class="card-header bg-transparent border-0">
             {% for message in messages %}
 
-
             <h4 class="text-white mb-0" style="background-color: #0b90a8">{{ message }}</h4>            {% endfor %}
-
-            <h3 class="text-white mb-0">Список операции</h3>
-
+            <h3 class="text-white mb-0">Жұмыс тізімі</h3>
           </div>
           <div class="table-responsive">
             <table class="table align-items-center table-dark table-flush">
@@ -46,11 +43,11 @@
                 <tr>
                   <th scope="col" class="sort" data-sort="name">Проверка</th>
                   <th scope="col" class="sort" data-sort="name">Клиент</th>
-                  <th scope="col" class="sort" data-sort="budget">Сотрудник</th>
-                  <th scope="col" class="sort" data-sort="status">Название файла</th>
+                  <th scope="col" class="sort" data-sort="budget">Қызметкер</th>
+                  <th scope="col" class="sort" data-sort="status">Файл атауы</th>
                   <th scope="col">Тип файла</th>
-                  <th scope="col" class="sort" data-sort="completion">Размер файла</th>
-                  <th scope="col">Hash файла</th>
+                  <th scope="col" class="sort" data-sort="completion">Файл өлшемі</th>
+                  <th scope="col">Файлдың Hash-і</th>
                 </tr>
               </thead>
               <tbody class="list">
@@ -100,17 +97,17 @@
           </div>
         </div>
       </div>
-        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" caller-id="" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+         <div class="modal fade" id="confirmDeleteModal" tabindex="-1" caller-id="" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body confirm-delete">
-                        Вы точно хотите удалить?
+                        Жойғыңыз келетініне сенімдісіз бе?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Бас тарту
                         </button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                id="confirmDeleteButtonModal">Удалить
+                                id="confirmDeleteButtonModal">Жою
                         </button>
                     </div>
                 </div>
